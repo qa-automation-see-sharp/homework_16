@@ -1,6 +1,6 @@
 namespace xUnit.Tests.UI;
 
-public class UnitTest1
+public class TextBoxTests
 {
     [Fact]
     public void Test1()
