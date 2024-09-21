@@ -1,4 +1,4 @@
-namespace xUnit.Tests.UI;
+namespace xUnit.Tests.UI.Tests;
 
 public class TextBoxTests
 {

@@ -1,6 +1,6 @@
 using Test.Utils.PageObjects;
 
-namespace NUnit.Tests.UI;
+namespace NUnit.Tests.UI.Tests;
 
 public class Tests
 {
