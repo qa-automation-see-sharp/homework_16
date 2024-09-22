@@ -44,6 +44,10 @@ public class MainPaige
 
     public ElementsPage OpenElementsPage()
     {
+        //to perform Scroll on application using Selenium
+        IJavaScriptExecutor js = (IJavaScriptExecutor)_driver;
+        js.ExecuteScript("window.scrollBy(0,350)", "");
+
         _driver?.FindElement(Elemnts).Click();
         return new(_driver);
     }
