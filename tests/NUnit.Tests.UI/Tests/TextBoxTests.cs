@@ -7,9 +7,9 @@ public class Tests
     [Test]
     public void Test1()
     {
-        var mainPaige = new MainPaige().OpenInChrome();
-        var title = mainPaige.GetPageTitle;
-        var elementsPage = mainPaige.OpenElementsPage();
+        var mainPage = new MainPage().OpenInChrome();
+        var title = mainPage.GetPageTitle;
+        var elementsPage = mainPage.OpenElementsPage();
         var isAccordionElementPresent = elementsPage.CheckAccordion();
 
         var textBoxPage = elementsPage.OpenTextBoxPage();
