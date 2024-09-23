@@ -15,6 +15,7 @@ public class Tests
         var textBoxPage = elementsPage.OpenTextBoxPage();
         var textBoxFormIsPresent =  textBoxPage.CheckTextBoxForm();
         var textBoxTitle = textBoxPage.CheckTextBoxTitle();
+        
         var textBoxLabelName = textBoxPage.GetFullNameLabelText();
         var textBoxLabelEmail = textBoxPage.GetEmailLabelText();
         var textBoxLabelCurrentAddress = textBoxPage.GetCurrentAddressLabelText();
@@ -23,6 +24,10 @@ public class Tests
             textBoxPage.EnterEmail("liudatest@test.com");
             textBoxPage.EnterCurrentAddress("200 Crescent Ave, Covington, KY 41011, United States");
             textBoxPage.EnterPermanentAddress("6834 Hollywood Blvd\nLos Angeles, California 90028-6116");
+        var textBoxSubmitButtonIsEnabled = textBoxPage.IsSubmitButtonEnabled();      
+            textBoxPage.ClickSubmitButton();
+            
+        var isUserDataPresent = textBoxPage.CheckEnteredUserData();
         
 
         Assert.Multiple(() =>
@@ -35,6 +40,8 @@ public class Tests
             Assert.That(textBoxLabelEmail, Is.EqualTo("Email"));
             Assert.That(textBoxLabelCurrentAddress, Is.EqualTo("Current Address"));
             Assert.That(textBoxLabelPermanentAddress, Is.EqualTo("Permanent Address"));
+            Assert.That(textBoxSubmitButtonIsEnabled, Is.True);
+            Assert.That(isUserDataPresent, Is.True);
         });
     }
 }

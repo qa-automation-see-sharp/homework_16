@@ -15,6 +15,8 @@ public class TextBoxPage
     private By EmailInput => By.CssSelector("input#userEmail");
     private By CurrentAddressInput => By.CssSelector("textarea#currentAddress");
     private By PermanentAddressInput => By.XPath("/html//textarea[@id='permanentAddress']");
+    private By SubmitButton => By.Id("submit");
+    private By UserDataOutput => By.XPath("//div[@id='output']/div[@class='border col-md-12 col-sm-12']");
 
     public TextBoxPage(IWebDriver driver)
     {
@@ -75,5 +77,23 @@ public class TextBoxPage
     {
         _driver.FindElement(PermanentAddressInput).SendKeys(permanentAddress);
         return this;
+    }
+
+    public bool IsSubmitButtonEnabled()
+    {
+        var submitButton = _driver.FindElement(SubmitButton);
+        return submitButton.Enabled;
+    }
+
+    public TextBoxPage ClickSubmitButton()
+    {
+        _driver.FindElement(SubmitButton).Click();
+        return this;
+    }
+
+    public bool CheckEnteredUserData()
+    {
+        var userData = _driver.FindElement(UserDataOutput);
+        return userData.Displayed;
     }
 }
