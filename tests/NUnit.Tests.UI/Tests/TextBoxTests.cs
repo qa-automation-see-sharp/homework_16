@@ -13,16 +13,16 @@ public class Tests
         var isAccordionElementPresent = elementsPage.CheckAccordion();
 
         var textBoxPage = elementsPage.OpenTextBoxPage();
-        var textBoxForIsPresent =  textBoxPage.CheckTextBoxForm();
+        var textBoxFormIsPresent =  textBoxPage.CheckTextBoxForm();
         var textBoxTitle = textBoxPage.CheckTextBoxTitle();
         var textBoxLabelName = textBoxPage.GetFullNameLabelText();
-            textBoxPage.EnterFullName("Oleh Kutafin");
+            textBoxPage.EnterFullName("Liudmyla Savinska");
 
         Assert.Multiple(() =>
         {
             Assert.That(title, Is.EqualTo("DEMOQA"));
             Assert.That(isAccordionElementPresent, Is.True);
-            Assert.That(textBoxForIsPresent, Is.True);
+            Assert.That(textBoxFormIsPresent, Is.True);
             Assert.That(textBoxTitle, Is.True);
             Assert.That(textBoxLabelName, Is.EqualTo("Full Name"));
         });
