@@ -16,7 +16,14 @@ public class Tests
         var textBoxFormIsPresent =  textBoxPage.CheckTextBoxForm();
         var textBoxTitle = textBoxPage.CheckTextBoxTitle();
         var textBoxLabelName = textBoxPage.GetFullNameLabelText();
+        var textBoxLabelEmail = textBoxPage.GetEmailLabelText();
+        var textBoxLabelCurrentAddress = textBoxPage.GetCurrentAddressLabelText();
+        var textBoxLabelPermanentAddress = textBoxPage.GetPermanentAddressLabelText();
             textBoxPage.EnterFullName("Liudmyla Savinska");
+            textBoxPage.EnterEmail("liudatest@test.com");
+            textBoxPage.EnterCurrentAddress("200 Crescent Ave, Covington, KY 41011, United States");
+            textBoxPage.EnterPermanentAddress("6834 Hollywood Blvd\nLos Angeles, California 90028-6116");
+        
 
         Assert.Multiple(() =>
         {
@@ -25,6 +32,9 @@ public class Tests
             Assert.That(textBoxFormIsPresent, Is.True);
             Assert.That(textBoxTitle, Is.True);
             Assert.That(textBoxLabelName, Is.EqualTo("Full Name"));
+            Assert.That(textBoxLabelEmail, Is.EqualTo("Email"));
+            Assert.That(textBoxLabelCurrentAddress, Is.EqualTo("Current Address"));
+            Assert.That(textBoxLabelPermanentAddress, Is.EqualTo("Permanent Address"));
         });
     }
 }
