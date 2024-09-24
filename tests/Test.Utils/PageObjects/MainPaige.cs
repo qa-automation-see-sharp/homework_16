@@ -1,4 +1,5 @@
 using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using Test.Utils.WebDriver;
 using static Test.Utils.WebDriver.WebDriverFactory;
 
@@ -44,7 +45,12 @@ public class MainPaige
 
     public ElementsPage OpenElementsPage()
     {
-        _driver?.FindElement(Elemnts).Click();
+        var element = _driver?.FindElement(Elemnts);
+        int deltaY = element.Location.Y;
+        new Actions(_driver)
+            .ScrollByAmount(0, deltaY)
+            .Perform();
+        element.Click();
         return new(_driver);
     }
 
