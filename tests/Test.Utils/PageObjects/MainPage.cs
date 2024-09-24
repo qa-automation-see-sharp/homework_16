@@ -4,7 +4,7 @@ using static Test.Utils.WebDriver.WebDriverFactory;
 
 namespace Test.Utils.PageObjects;
 
-public class MainPaige
+public class MainPage
 {
     private IWebDriver? _driver;
     private string Url = "https://demoqa.com/";
@@ -12,7 +12,7 @@ public class MainPaige
 
     public string? GetPageTitle => _driver?.Title;
 
-    public MainPaige OpenInChrome()
+    public MainPage OpenInChrome()
     {
         _driver = CreateWebDriver(BrowserNames.Chrome, "--start-maximized");
         _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
@@ -22,7 +22,7 @@ public class MainPaige
         return this;
     }
 
-    public MainPaige OpenInFireFox()
+    public MainPage OpenInFireFox()
     {
         _driver = CreateWebDriver(BrowserNames.Firefox, "--start-maximized");
         _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
@@ -32,7 +32,7 @@ public class MainPaige
         return this;
     }
 
-    public MainPaige OpenInEdge()
+    public MainPage OpenInEdge()
     {
         _driver = CreateWebDriver(BrowserNames.Edge, "--start-maximized");
         _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
@@ -46,6 +46,9 @@ public class MainPaige
     {
         _driver?.FindElement(Elemnts).Click();
         return new(_driver);
+    }
+    public MainPage(IWebDriver _driver)
+    {
     }
 
     public void Close()
