@@ -1,4 +1,3 @@
-using Bogus;
 using Test.Utils.PageObjects;
 
 namespace NUnit.Tests.UI.Tests;
@@ -11,12 +10,7 @@ public class Tests
         //Arrange
         var mainPaige = new MainPaige().OpenInChrome();
         var elementsPage = mainPaige.OpenElementsPage();      
-        var textBoxPage = elementsPage.OpenTextBoxPage();
-        // var faker = new Faker();
-        // var fullName = faker.Name.FirstName();
-        // var email = faker.Internet.Email();
-        // var currentAddress = faker.Address.StreetName();
-        // var permanentAddress = faker.Address.StreetName();
+        var textBoxPage = elementsPage.OpenTextBoxPage();        
         var fullName = "Full Name";
         var email = "email@mail.com";
         var currentAddress = "Current Address";
@@ -28,12 +22,13 @@ public class Tests
         textBoxPage.EnterCurrentAddress(currentAddress);
         textBoxPage.EnterPermanentAddress(permanentAddress);
 
+        textBoxPage.ScrollToSubmitBtn();
         textBoxPage.ClickSumbit();
 
-        var assertedFullName = textBoxPage.GetDisplayedFullName().Contains(fullName);
-        var assertedEmail = textBoxPage.GetDisplayedEmail().Contains(email);
-        var assertedCurrentAddress = textBoxPage.GetDisplayedCurrentAddress().Contains(currentAddress);
-        var assertedPermanentAddress = textBoxPage.GetDisplayedPermanentAddress().Contains(permanentAddress); 
+        var assertedFullName = textBoxPage.GetOutput().Contains(fullName);
+        var assertedEmail = textBoxPage.GetOutput().Contains(email);
+        var assertedCurrentAddress = textBoxPage.GetOutput().Contains(currentAddress);
+        var assertedPermanentAddress = textBoxPage.GetOutput().Contains(permanentAddress);
 
         mainPaige.Close();
 

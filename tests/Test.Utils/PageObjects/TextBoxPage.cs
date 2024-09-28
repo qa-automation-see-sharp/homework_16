@@ -5,6 +5,7 @@ namespace Test.Utils.PageObjects;
 public class TextBoxPage
 {
     private IWebDriver _driver;
+    private IJavaScriptExecutor js => (IJavaScriptExecutor)_driver;
     private By TextBoxTitle => By.XPath("//h1[contains(text(),\"Text Box\")]");
     private By TextBoxForm => By.Id("userForm");
     private By FullNameLable => By.Id("userName-label");
@@ -12,11 +13,8 @@ public class TextBoxPage
     private By emailInput => By.Id("userEmail");
     private By currentAddressInput => By.Id("currentAddress");
     private By permanentAdressInput => By.Id("permanentAddress");
-    private By submitBtn => By.Id("submit");
-    private By displayedFullName => By.Id("name");
-    private By displayedEmail => By.Id("email");
-    private By displayedCurrentAddress => By.Id("currentAddress");
-    private By displayedPermanentAddress => By.Id("permanentAddress");
+    public By submitBtn => By.XPath("//*[@id='submit']"); 
+    private By output => By.Id("output");
 
 
     public TextBoxPage(IWebDriver driver)
@@ -69,28 +67,19 @@ public class TextBoxPage
         return this;
     }
 
+    public void ScrollToSubmitBtn()
+    {
+        var button =_driver.FindElement(submitBtn);
+        js.ExecuteScript("arguments[0].scrollIntoView(true);", button); 
+    }
+
     public void ClickSumbit()
     {
         _driver.FindElement(submitBtn).Click();
     }
 
-    public string GetDisplayedFullName()
+    public string GetOutput()
     {
-        return _driver.FindElement(displayedFullName).Text;
-    }
-
-    public string GetDisplayedEmail()
-    {
-        return _driver.FindElement(displayedEmail).Text;
-    }
-
-    public string GetDisplayedCurrentAddress()
-    {
-        return _driver.FindElement(displayedCurrentAddress).Text;
-    }
-
-    public string GetDisplayedPermanentAddress()
-    {
-        return _driver.FindElement(displayedPermanentAddress).Text;
+        return _driver.FindElement(output).Text;
     }
 }

@@ -9,7 +9,6 @@ public class MainPaige
     private IWebDriver? _driver;
     private string Url = "https://demoqa.com/";
     private By Elemnts => By.XPath("//div[@class=\"card mt-4 top-card\"]/div/div/h5[contains(text(),\"Elements\")]");
-
     public string? GetPageTitle => _driver?.Title;
 
     public MainPaige OpenInChrome()
