@@ -4,6 +4,7 @@ namespace NUnit.Tests.UI.Tests;
 
 public class Tests
 {
+    // You should use [SetUp] and [TearDown] attributes to make test more readable and reusable
     [Test]
     public void Test1()
     {
