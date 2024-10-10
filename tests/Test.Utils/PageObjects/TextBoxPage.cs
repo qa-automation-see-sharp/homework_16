@@ -25,6 +25,10 @@ public class TextBoxPage
     private By PermanentAddressInput => By.Id("permanentAddress");
     private By SubmitButton => By.Id("submit");
     private By OutputNameLabelXpath => By.XPath("//div[@id='output']//p[@id='name']");
+    private By OutputEmailLabelXpath => By.XPath("//div[@id='output']//p[@id='email']");
+    private By OutputCurrentAddressLabelXpath => By.XPath("//div[@id='output']//p[@id='currentAddress']");
+    private By OutputPermanentAddressLabelXpath => By.XPath("//div[@id='output']//p[@id='permanentAddress']");
+
 
     public bool CheckTextBoxTitle()
     {
@@ -101,5 +105,17 @@ public class TextBoxPage
     public string GetOutputNameText()
     {
         return _driver.FindElement(OutputNameLabelXpath).Text;
+    }
+    public string GetOutputEmailText()
+    { 
+        return _driver.FindElement(OutputEmailLabelXpath).Text;
+    }
+    public string GetOutputCurrentAddressText()
+    {
+        return _driver.FindElement(OutputCurrentAddressLabelXpath).Text;
+    }
+    public string GetOutputPermanentAddressText()
+    {
+        return _driver.FindElement(OutputPermanentAddressLabelXpath).Text;
     }
 }

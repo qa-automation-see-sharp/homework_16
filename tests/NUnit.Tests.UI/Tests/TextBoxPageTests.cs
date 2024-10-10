@@ -16,9 +16,13 @@ public class TextBoxPageTests
     private MainPaige _mainPaige;
     private TextBoxPage _textBoxPage;
     private const string Name = "Anton Pavliuchyk";
+    private const string OutputName = "Name:Anton Pavliuchyk";
     private const string Email = "testemail@mail.com";
+    private const string OutputEmail = "Email:testemail@mail.com";
     private const string CurrentAddress = "Anderson st. 43";
+    private const string OutputCurrentAddress = "Current Address :Anderson st. 43";
     private const string PermanentAddress = "Baker st. 11";
+    private const string OutputPermanentAddress = "Permananet Address :Baker st. 11";
 
     [Test]
     public void CheckPageTitle()
@@ -59,12 +63,19 @@ public class TextBoxPageTests
         _textBoxPage.EnterPermanentAddress(PermanentAddress);
         _textBoxPage.ClickSubmit();
         var outputFormIsPresent = _textBoxPage.CheckOutputForm();
-        var outPutText = _textBoxPage.GetOutputNameText();
+        var outputNameText = _textBoxPage.GetOutputNameText();
+        var outputEmailText = _textBoxPage.GetOutputEmailText();
+        var outputCurrentAddressText = _textBoxPage.GetOutputCurrentAddressText();
+        var outputPermanentAddressText = _textBoxPage.GetOutputPermanentAddressText();
+
 
         Assert.Multiple(() =>
         {
             Assert.That(outputFormIsPresent, Is.True);
-            Assert.That(outPutText, Is.EqualTo("Name:Anton Pavliuchyk"));
+            Assert.That(outputNameText, Is.EqualTo(OutputName));
+            Assert.That(outputEmailText, Is.EqualTo(OutputEmail));
+            Assert.That(outputCurrentAddressText, Is.EqualTo(OutputCurrentAddress));
+            Assert.That(outputPermanentAddressText, Is.EqualTo(OutputPermanentAddress));
         });
     }
 
