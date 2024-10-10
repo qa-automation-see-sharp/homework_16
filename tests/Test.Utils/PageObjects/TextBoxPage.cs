@@ -7,8 +7,18 @@ public class TextBoxPage
     private IWebDriver _driver;
     private By TextBoxTitle => By.XPath("//h1[contains(text(),\"Text Box\")]");
     private By TextBoxForm => By.Id("userForm");
+    private By OutputForm => By.Id("output");
     private By FullNameLable => By.Id("userName-label");
+    private By EmailLabel =>By.Id("userEmail-label");
+    private By CurrentAddressLabel => By.Id("currentAddress-label");
+    private By PermanentAddressLabel => By.Id("permanentAddress-label");
     private By FullNameInput => By.Id("userName");
+    private By EmailInput => By.Id("userEmail");
+    private By CurrentAddressInput => By.Id("currentAddress");
+    private By PermanentAddressInput => By.Id("permanentAddress");
+    private By SubmitButton => By.Id("submit");
+    private By OutputNameLabelxpath => By.XPath("//div[@id='output']//p[@id='name']");
+
 
     public TextBoxPage(IWebDriver driver)
     {
@@ -26,6 +36,11 @@ public class TextBoxPage
         var element = _driver.FindElement(TextBoxForm);
         return element.Displayed && element.Enabled;
     }
+    public bool CheckOutputForm()
+    {
+        var element = _driver.FindElement(OutputForm);
+        return element.Displayed && element.Enabled;
+    }
 
     public TextBoxPage EnterFullName(string fullName)
     {
@@ -37,5 +52,45 @@ public class TextBoxPage
     public string GetFullNameLabelText()
     {
         return _driver.FindElement(FullNameLable).Text;
+    }
+    public TextBoxPage EnterEmail(string email)
+    {
+        _driver.FindElement(EmailInput).SendKeys(email);
+
+        return this;
+    }
+    public string GetEmailLabelText()
+    {
+        return _driver.FindElement(EmailLabel).Text;
+    }
+    public TextBoxPage EnterCurrentAddress(string currentaddress)
+    {
+        _driver.FindElement(CurrentAddressInput).SendKeys(currentaddress);
+
+        return this;
+    }
+    public string GetCurrentAddressLabelText()
+    {
+        return _driver.FindElement(CurrentAddressLabel).Text;
+    }
+    public TextBoxPage EnterPermanentAddress(string permanentaddress)
+    {
+        _driver.FindElement(PermanentAddressInput).SendKeys(permanentaddress);
+
+        return this;
+    }
+    public string GetPermanentAddressLabelText()
+    {
+        return _driver.FindElement(PermanentAddressLabel).Text;
+    }
+    public TextBoxPage ClickSubmit()
+    { 
+        _driver.FindElement(SubmitButton).Click();
+        return new TextBoxPage(_driver);
+    }
+    public string OutputNameText()
+    {
+        return _driver.FindElement(By.XPath("//div[@id='output']//p[@id='name']")).Text;
+        
     }
 }
