@@ -7,7 +7,7 @@ namespace Test.Utils.PageObjects;
 public class MainPaige
 {
     private IWebDriver? _driver;
-    private string Url = "https://demoqa.com/";
+    private readonly string Url = "https://demoqa.com/";
     private By Elemnts => By.XPath("//div[@class=\"card mt-4 top-card\"]/div/div/h5[contains(text(),\"Elements\")]");
 
     public string? GetPageTitle => _driver?.Title;
@@ -45,11 +45,12 @@ public class MainPaige
     public ElementsPage OpenElementsPage()
     {
         _driver?.FindElement(Elemnts).Click();
-        return new(_driver);
+        return new ElementsPage(_driver);
     }
 
     public void Close()
     {
         _driver?.Quit();
+        _driver?.Dispose();
     }
 }

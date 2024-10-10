@@ -14,28 +14,19 @@ public static class WebDriverFactory
         {
             case BrowserNames.Chrome:
                 var chromeOptions = new ChromeOptions();
-                foreach (var arg in args)
-                {
-                    chromeOptions.AddArgument(arg);
-                }
+                foreach (var arg in args) chromeOptions.AddArgument(arg);
 
                 driver = new ChromeDriver(chromeOptions);
                 break;
             case BrowserNames.Firefox:
                 var firefoxOptions = new FirefoxOptions();
-                foreach (var arg in args)
-                {
-                    firefoxOptions.AddArgument(arg);
-                }
+                foreach (var arg in args) firefoxOptions.AddArgument(arg);
 
                 driver = new FirefoxDriver(firefoxOptions);
                 break;
             case BrowserNames.Edge:
                 var edgeOptions = new EdgeOptions();
-                foreach (var arg in args)
-                {
-                    edgeOptions.AddArgument(arg);
-                }
+                foreach (var arg in args) edgeOptions.AddArgument(arg);
 
                 driver = new EdgeDriver(edgeOptions);
                 break;

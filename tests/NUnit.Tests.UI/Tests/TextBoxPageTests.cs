@@ -1,0 +1,76 @@
+using Test.Utils.PageObjects;
+
+namespace NUnit.Tests.UI.Tests;
+
+[TestFixture]
+public class TextBoxPageTests
+{
+    [OneTimeSetUp]
+    public void OneTimeSetUp()
+    {
+        _mainPaige = new MainPaige();
+        _mainPaige.OpenInChrome();
+        _textBoxPage = _mainPaige.OpenElementsPage().OpenTextBoxPage();
+    }
+
+    private MainPaige _mainPaige;
+    private TextBoxPage _textBoxPage;
+    private const string Name = "Anton Pavliuchyk";
+    private const string Email = "testemail@mail.com";
+    private const string CurrentAddress = "Anderson st. 43";
+    private const string PermanentAddress = "Baker st. 11";
+
+    [Test]
+    public void CheckPageTitle()
+    {
+        var checkTextBoxTitle = _textBoxPage.CheckTextBoxTitle();
+        var textBoxFormIsPresent = _textBoxPage.CheckTextBoxForm();
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(checkTextBoxTitle, Is.True);
+            Assert.That(textBoxFormIsPresent, Is.True);
+        });
+    }
+
+    [Test]
+    public void CheckLabels()
+    {
+        var textBoxLabelName = _textBoxPage.GetFullNameLabelText();
+        var textBoxLabelEmail = _textBoxPage.GetEmailLabelText();
+        var textBoxLabelCurrentAddress = _textBoxPage.GetCurrentAddressLabelText();
+        var textBoxLabelPermanentAddress = _textBoxPage.GetPermanentAddressLabelText();
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(textBoxLabelName, Is.EqualTo("Full Name"));
+            Assert.That(textBoxLabelEmail, Is.EqualTo("Email"));
+            Assert.That(textBoxLabelCurrentAddress, Is.EqualTo("Current Address"));
+            Assert.That(textBoxLabelPermanentAddress, Is.EqualTo("Permanent Address"));
+        });
+    }
+
+    [Test] //TODO: Finish this test
+    public void CheckInputsGetCorrectValue()
+    {
+        _textBoxPage.EnterFullName(Name);
+        _textBoxPage.EnterEmail(Email);
+        _textBoxPage.EnterCurrentAddress(CurrentAddress);
+        _textBoxPage.EnterPermanentAddress(PermanentAddress);
+        _textBoxPage.ClickSubmit();
+        var outputFormIsPresent = _textBoxPage.CheckOutputForm();
+        var outPutText = _textBoxPage.GetOutputNameText();
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(outputFormIsPresent, Is.True);
+            Assert.That(outPutText, Is.EqualTo("Name:Anton Pavliuchyk"));
+        });
+    }
+
+    [OneTimeTearDown]
+    public void OneTimeTearDown()
+    {
+        _mainPaige.Close();
+    }
+}
