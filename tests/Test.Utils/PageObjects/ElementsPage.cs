@@ -16,10 +16,19 @@ public class ElementsPage
     {
         _driver = driver;
     }
-    
+
+    public string GetCurrentUrl()
+    {
+        return _driver.Url;
+    }
     public bool CheckAccordion()
     {
         return _driver.FindElement(Accordion).Displayed;
+    }
+
+    public bool CkeckTextBox()
+    {
+        return _driver.FindElement(TextBox).Displayed;
     }
 
     public TextBoxPage OpenTextBoxPage()
@@ -27,5 +36,8 @@ public class ElementsPage
         _driver.FindElement(TextBox).Click();
         return new TextBoxPage(_driver);
     }
-    
+    public void Close()
+    {
+        _driver?.Quit();
+    }
 }
