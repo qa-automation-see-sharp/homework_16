@@ -6,8 +6,6 @@ namespace xUnit.Tests.UI.Tests;
 
 public class TextBoxTests : IAsyncLifetime
 {
-    protected IWebDriver _driver;
-
     protected MainPage _mainPage;
     protected ElementsPage _elementsPage;
     protected TextBoxPage _textBoxPage;
@@ -17,14 +15,13 @@ public class TextBoxTests : IAsyncLifetime
 
     public async Task InitializeAsync()
     {
-        _driver = new ChromeDriver();
-        _mainPage = new MainPage(_driver);
+        _mainPage = new MainPage();
         _mainPage.OpenInChrome();
     }
 
     public async Task DisposeAsync()
     {
-        _driver.Quit();
+        _mainPage.Close();
     }
 
     [Fact]

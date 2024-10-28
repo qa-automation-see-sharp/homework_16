@@ -10,20 +10,18 @@ public class Tests
     private ElementsPage _elementsPage;
     private TextBoxPage _textBoxPage;
     private string _expectedPage = "https://demoqa.com/elements";
-    private IWebDriver? _driver;
 
     [SetUp]
     public void Setup()
     {
-        _driver = new ChromeDriver();
-        _mainPage = new MainPage(_driver);
+        _mainPage = new MainPage();
         _mainPage.OpenInChrome();
     }
 
     [TearDown]
     public void TearDown()
     {
-        _driver.Quit();
+        _mainPage.Close();
     }
 
     [Test]
