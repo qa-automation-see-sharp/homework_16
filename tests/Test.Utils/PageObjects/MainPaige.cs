@@ -14,16 +14,9 @@ public class MainPage
 
     public string? GetPageTitle => _driver?.Title;
 
-    // TODO: Whe don't need to initialize the driver in the constructor
-    public MainPage() { }
-
     public MainPage OpenInChrome()
     {
-        // TODO: Driver initialization happens here
         _driver = CreateWebDriver(BrowserNames.Chrome, "--start-maximized");
-        //TODO: this is redundant too
-        //_driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
-        //_driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(15);
         _driver?.Navigate().GoToUrl(Url);
 
         return this;
