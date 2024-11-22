@@ -3,7 +3,7 @@ using Test.Utils.PageObjects;
 
 namespace NUnit.Tests.UI.Tests;
 
-[TestFixture] // [Parallelizable(ParallelScope.All)] won't work with the current implementation 
+[TestFixture]
 public class TextBoxTests
 {
     protected MainPage _mainPage;
@@ -55,13 +55,8 @@ public class TextBoxTests
 
         var output = _textBoxPage.GetOutputText();
 
-        var textCheck = "Name:Zaremba Olesia\nEmail:zaremba.olesia@gmail.com\nCurrent Address :Khreshchatyk street, 45, Kyiv, Ukraine\nPermananet Address :Khreshchatyk street, 45, Kyiv, Ukraine";
-        Assert.Multiple(() =>
-        {
-            Assert.AreEqual(textCheck, output);
-            //Use That this is recommended by NUnit
-            Assert.That(output, Is.EqualTo(textCheck));
-        });
+        var textCheck = "Name:Zaremba Olesia\r\nEmail:zaremba.olesia@gmail.com\r\nCurrent Address :Khreshchatyk street, 45, Kyiv, Ukraine\r\nPermananet Address :Khreshchatyk street, 45, Kyiv, Ukraine";
+        Assert.That(output, Is.EqualTo(textCheck));
     }
 
     [OneTimeTearDown]
